@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Advanced HTML demo page showing semantic structure, media, tables, forms, and accessibility basics." />
+  <link rel="icon" href="data:," />
+  <title>Advanced HTML Demo</title>
+  <style>
+    /* tiny helper styles so the page is readable without a CSS file */
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.5; margin: 0; }
+    header, nav, main, footer { padding: 1rem; }
+    header, footer { background: #111; color: #fff; }
+    nav a { margin-right: .75rem; }
+    .container { max-width: 980px; margin: 0 auto; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: .5rem; text-align: left; }
+    thead th { background: #f5f5f5; }
+    figure { margin: 0; }
+    .grid { display: grid; gap: 1rem; grid-template-columns: 2fr 1fr; }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    .visually-hidden { position:absolute; left:-9999px; }
+  </style>
+</head>
+<body>
+  <a class="visually-hidden" href="#content" id="top">Skip to main content</a>
+
+  <header role="banner">
+    <div class="container">
+      <h1>Advanced HTML Concepts</h1>
+      <p>Demonstration page for Assignment #3</p>
+      <nav aria-label="Primary">
+        <a href="#media">Media</a>
+        <a href="#table">Table</a>
+        <a href="#form">Form</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="container" role="main">
+    <article>
+      <header>
+        <h2>Semantic Structure, Inline Semantics &amp; Anchors</h2>
+        <p>Last updated <time datetime="2025-10-30">Oct 30, 2025</time></p>
+      </header>
+
+      <section>
+        <p>
+          This page uses semantic elements like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+          <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>,
+          and <code>&lt;footer&gt;</code>. It also demonstrates inline semantics such as
+          <abbr title="HyperText Markup Language">HTML</abbr> and <code>&lt;time&gt;</code>.
+          Use the navigation links above to jump to each feature, or <a href="#top">return to top</a>.
+        </p>
+      </section>
+
+      <section id="media">
+        <h3>Images &amp; Media</h3>
+
+        <figure>
+          <picture>
+            <!-- Replace with your own images later if you want -->
+            <source srcset="https://picsum.photos/1200/500" media="(min-width: 800px)">
+            <img src="https://picsum.photos/800/400" alt="Abstract placeholder scenery used to demonstrate responsive images" width="800" height="400">
+          </picture>
+          <figcaption>Responsive image using <code>&lt;picture&gt;</code> with proper alt text.</figcaption>
+        </figure>
+
+        <h4>Video with Captions</h4>
+        <video controls width="640">
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+          <track kind="captions" srclang="en" label="English captions" src="data:text/vtt;charset=utf-8,WEBVTT%0A%0A00:00.000%20--%3E%2000:02.000%0AFlower%20in%20the%20wind." default>
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+
+        <h4>Audio</h4>
+        <audio controls>
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <section id="table">
+        <h3>Accessible Data Table</h3>
+        <table>
+          <caption>Weekly Study Plan</caption>
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Topic</th>
+              <th scope="col">Minutes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Mon</th><td>Forms &amp; Validation</td><td>45</td></tr>
+            <tr><th scope="row">Wed</th><td>Tables &amp; Captions</td><td>40</td></tr>
+            <tr><th scope="row">Fri</th><td>Media &amp; Tracks</td><td>35</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row" colspan="2">Total</th><td>120</td></tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <section id="form" aria-labelledby="form-title">
+        <h3 id="form-title">Accessible Form</h3>
+        <p id="form-help">All fields marked * are required.</p>
+
+        <form action="#" method="post" aria-describedby="form-help">
+          <fieldset>
+            <legend>Newsletter Sign-Up</legend>
+
+            <label for="name">Full name *</label><br>
+            <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Doe"><br><br>
+
+            <label for="email">Email *</label><br>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"><br><br>
+
+            <label for="topic">Topic of interest</label><br>
+            <input list="topics" id="topic" name="topic" placeholder="Choose or type">
+            <datalist id="topics">
+              <option value="Semantic HTML">
+              <option value="Tables">
+              <option value="Forms">
+              <option value="Media">
+            </datalist><br><br>
+
+            <label for="username">Username (letters &amp; numbers only)</label><br>
+            <input id="username" name="username" pattern="[A-Za-z0-9]{4,12}" placeholder="4–12 chars"><br><br>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+          </fieldset>
+        </form>
+      </section>
+
+      <aside aria-label="Helpful tip">
+        <p><strong>Tip:</strong> Use <code>label</code> elements and descriptive <code>alt</code> text for accessibility.</p>
+      </aside>
+
+      <section id="faq">
+        <h3>FAQ (Details/Summary)</h3>
+        <details>
+          <summary>What counts as “advanced” HTML here?</summary>
+          <p>Use semantic structure, accessible tables/forms, media with captions, and modern elements like <code>picture</code> and <code>details</code>.</p>
+        </details>
+      </section>
+
+      <footer>
+        <p>Made for <em>Advanced_HTML — Assignment #3</em>.</p>
+      </footer>
+    </article>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; <time datetime="2025">2025</time> Your Name</p>
+    </div>
+  </footer>
+</body>
+</html>
